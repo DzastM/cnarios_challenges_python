@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
-from features.pages.base_page import BasePage
+from .base_page import BasePage
 
 class ProductPurchasingPage(BasePage):
     HEADING = (By.TAG_NAME, "h1")

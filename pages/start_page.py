@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 
-from features.pages.base_page import BasePage
-from features.pages.challenges_page import ChallengesPage
-from features.pages.start_exploring_page import StartExploringPage
+from .base_page import BasePage
+from .challenges_page import ChallengesPage
+from .start_exploring_page import StartExploringPage
 
 class StartPage(BasePage): 
     URL = "https://www.cnarios.com/#how-it-works"

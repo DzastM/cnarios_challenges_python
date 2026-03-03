@@ -1,5 +1,5 @@
 from behave import given, then, when
-from features.pages.product_purchasing import ProductPurchasingPage
+from pages.product_purchasing import ProductPurchasingPage
 from pages.start_page import StartPage
 
 @given('I am on the homepage')

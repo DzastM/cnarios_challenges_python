@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
-from features.pages.base_page import BasePage
-from features.pages.product_purchasing import ProductPurchasingPage
+from .base_page import BasePage
+from .product_purchasing import ProductPurchasingPage
 
 class ChallengesPage(BasePage):
     HEADING = (By.TAG_NAME, "h1")
