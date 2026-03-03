@@ -1,5 +1,5 @@
 from behave import given, then, when
-from pages.product_purchasing_flow.product_purchasing import ProductPurchasingPage
+from pages.product_purchasing_flow.product_purchasing_page import ProductPurchasingPage
 from pages.start_page import StartPage
 
 @given('I am on the product purchasing page')
@@ -15,7 +15,7 @@ def I_add_products_to_cart(context):
 
 @when('I view the cart')
 def I_view_the_cart(context):
-    context.page.click_view_cart()
+    context.page = context.page.click_view_cart()
 
 @then('the cart should contain')
 def the_cart_should_contain(context):
