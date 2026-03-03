@@ -21,7 +21,7 @@ class ChallengesPage(BasePage):
     
     def clickChallengeButton(self, name:str) -> None:
         if name == self.PRODUCT_PURCHASING_TEXT:
-            self.clickButton(self.VIEW_PRODUCT_PURCHASING_CHALLENGE_BUTTON)
+            self.click_element(self.VIEW_PRODUCT_PURCHASING_CHALLENGE_BUTTON)
             return ProductPurchasingPage(self.driver)
         
     

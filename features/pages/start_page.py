@@ -14,10 +14,10 @@ class StartPage(BasePage):
 
     def click_option_button(self, name:str) -> None:
         if name == self.CHALLENGES_TEXT:
-            self.clickButton(self.CHALLENGES_BUTTON)
+            self.click_element(self.CHALLENGES_BUTTON)
             return ChallengesPage(self.driver)
         else:
-            self.clickButton(self.START_EXPLORING_BUTTON)
+            self.click_element(self.START_EXPLORING_BUTTON)
             return StartExploringPage(self.driver)
 
 

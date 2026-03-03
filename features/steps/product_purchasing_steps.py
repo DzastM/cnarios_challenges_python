@@ -19,9 +19,12 @@ def I_view_the_cart(context):
     context.page.click_view_cart()
     context.cart_items = context.page.get_cart_items()
 
-
-
-
+@then('the cart should contain "{expected_items}"')
+def the_cart_should_contain(context, expected_items):
+    expected_items_list = expected_items.split(", ")
+    actual_items_list = [f"{quantity} x {name}" for name, quantity in context.cart_items.items()]
+    for item in expected_items_list:
+        assert item in actual_items_list, f"Expected item '{item}' not found in cart"
 
 @given('I am on the Challenges page')
 def I_am_on_the_challenges_page(context):
