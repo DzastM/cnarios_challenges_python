@@ -1,10 +1,6 @@
 from behave import given, then, when
-from pages.product_purchasing import ProductPurchasingPage
+from pages.product_purchasing_flow.product_purchasing import ProductPurchasingPage
 from pages.start_page import StartPage
-
-@given('I am on the homepage')
-def I_am_on_the_homepage(context):
-    context.page = StartPage(context.driver).open()
 
 @given('I am on the product purchasing page')
 def I_am_on_the_product_purchasing_page(context):
@@ -34,18 +30,3 @@ def the_cart_should_contain(context):
 def total_price_should_be(context, expected_total_price):
     actual_total_price = context.page.get_total_price()
     assert actual_total_price == expected_total_price, f"Expected total price '{expected_total_price}', but got '{actual_total_price}'"
-
-
-
-
-
-
-# @given('I am on the Challenges page')
-# def I_am_on_the_challenges_page(context):
-#     context.page = StartPage(context.driver).open()
-#     context.page = context.page.click_option_button("Challenges")
-
-# @then('I should see the heading "{expected_heading}"')
-# def I_should_see_the_heading(context, expected_heading):
-#     actual_heading = context.page.get_heading_text()
-#     assert actual_heading == expected_heading, f"Expected heading '{expected_heading}', but got '{actual_heading}'"

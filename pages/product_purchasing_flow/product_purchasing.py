@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
-from .base_page import BasePage
+from ..base_page import BasePage
 
 class ProductPurchasingPage(BasePage):
-    HEADING = (By.TAG_NAME, "h1")
+
     URL = "https://www.cnarios.com/challenges/product-purchasing"
     VIEW_CART_BUTTON = (By.CSS_SELECTOR, "header button")
     CART_SELECTOR = (By.CSS_SELECTOR, ".space-y-4 > div")
@@ -12,9 +12,6 @@ class ProductPurchasingPage(BasePage):
     PRODUCT_QUANTITY = (By.CSS_SELECTOR, ".space-x-2 > p")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".font-semibold")
     TOTAL_PRICE = (By.XPATH, ".//h6[contains(text(),'Total:')]")
-
-    def get_heading_text(self):
-        return self.driver.find_element(*self.HEADING).text
     
     def add_product_to_cart(self, product_name):
         product_locator = By.XPATH, f"//div[h6='{product_name}']//div[button]"
