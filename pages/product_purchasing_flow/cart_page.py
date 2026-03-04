@@ -26,3 +26,14 @@ class CartPage(BasePage):
 
     def get_total_price(self) -> str:
         return self.driver.find_element(*self.TOTAL_PRICE).text.split(':')[1].strip()
+
+    def update_product_quantity(self, product_name:str, expected_quantity:int):
+        current_quantity = int(self.get_item_name_and_quantity()[product_name])
+        minus_button = (By.XPATH, f"//p[contains(normalize-space(.),'{product_name}')]/following-sibling::div//button[1]")
+        plus_button = (By.XPATH, f"//p[contains(normalize-space(.),'{product_name}')]/following-sibling::div//button[2]")
+        if current_quantity < expected_quantity:
+            for _ in range(expected_quantity - current_quantity):
+                self.click_element(plus_button)
+        elif current_quantity > expected_quantity:
+            for _ in range(current_quantity - expected_quantity):
+                self.click_element(minus_button)

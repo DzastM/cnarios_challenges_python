@@ -11,7 +11,6 @@ Feature: End-to-end Product Purchasing Flow
         | Wireless Headphones  | 1        | $120  |
         And total price should be "$120"
 
-#to be done
     Scenario: Increase and decrease product quantity in cart
         Given I am on the product purchasing page
         When I add products to the cart
@@ -29,6 +28,7 @@ Feature: End-to-end Product Purchasing Flow
         | Smartphone Stand     | 2        | $90   |
         And total price should be "$90"
 
+#to be implemented
     Scenario: Remove product from cart
         Given I am on the product purchasing page
         When I add products to the cart

@@ -17,6 +17,14 @@ def I_add_products_to_cart(context):
 def I_view_the_cart(context):
     context.page = context.page.click_view_cart()
 
+@when('I increase the quantity of "{product_name}" to {expected_quantity}')
+def I_increase_the_quantity_of_product(context, product_name, expected_quantity):
+    context.page.update_product_quantity(product_name, int(expected_quantity))   
+
+@when('I decrease the quantity of "{product_name}" to {expected_quantity}')
+def I_decrease_the_quantity_of_product(context, product_name, expected_quantity):
+    context.page.update_product_quantity(product_name, int(expected_quantity))   
+
 @then('the cart should contain')
 def the_cart_should_contain(context):
     expected_items_list = {}
