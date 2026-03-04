@@ -38,3 +38,8 @@ def the_cart_should_contain(context):
 def total_price_should_be(context, expected_total_price):
     actual_total_price = context.page.get_total_price()
     assert actual_total_price == expected_total_price, f"Expected total price '{expected_total_price}', but got '{actual_total_price}'"
+
+@then('the cart should be empty')
+def the_cart_should_be_empty(context):
+    actual_items_list = context.page.get_item_name_and_quantity()
+    assert len(actual_items_list) == 0, f"Expected cart to be empty, but found items: {actual_items_list}"

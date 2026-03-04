@@ -28,7 +28,6 @@ Feature: End-to-end Product Purchasing Flow
         | Smartphone Stand     | 2        | $90   |
         And total price should be "$90"
 
-#to be implemented
     Scenario: Remove product from cart
         Given I am on the product purchasing page
         When I add products to the cart
@@ -37,7 +36,8 @@ Feature: End-to-end Product Purchasing Flow
         And I view the cart
         And I decrease the quantity of "Laptop Backpack" to 0
         Then the cart should be empty
-    
+        
+#to be implemented
     Scenario: Billing form validation
         Given I am on the product purchasing page
         When I add products to the cart
