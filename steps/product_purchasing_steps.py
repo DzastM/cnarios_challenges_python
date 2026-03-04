@@ -29,6 +29,50 @@ def I_decrease_the_quantity_of_product(context, product_name, expected_quantity)
 def I_proceed_to_address(context):
     context.page.click_proceed_to_address()
 
+@when('I fill in the billing form with data')
+def I_fill_in_the_billing_form_with_data(context):
+    for row in context.table:
+        first_name = row['First Name']
+        last_name = row['Last Name']
+        address = row['Address']
+        context.page.fill_in_address_form(first_name, last_name, address)
+
+@when('I click "Proceed to payment" button')
+def I_proceed_to_payment(context):
+    context.page.click_proceed_to_payment()
+
+@when('I click "Pay Now" button')
+def I_click_pay_now(context):
+    context.page.click_pay_now()
+
+@when('I click "Go Home" button')
+def I_click_go_home_button(context):
+    context.page = context.page.click_go_home_button()
+
+@when('I click "Cancel" button')
+def I_click_cancel_button(context):
+    context.page.click_cancel()
+
+@then('failure message should be displayed with "Go Home" button')
+def failure_message_should_be_displayed_with_go_home_button(context):
+    context.page.assert_payment_failed_message_displayed()
+    context.page.assert_go_home_button_is_displayed()
+
+@then('I should be redirected to the homepage')
+def I_should_be_redirected_to_homepage(context):
+    expected_url = StartPage.URL
+    actual_url = context.driver.current_url
+    assert actual_url == expected_url, f"Expected to be redirected to '{expected_url}', but got '{actual_url}'"
+
+@then('the cart should be empty')
+def the_cart_should_be_empty(context):
+    context.page.assert_if_cart_is_empty()
+
+@then('success message should be displayed with billing details')
+def billing_details_should_be_correct(context):
+    context.page.verify_order_successfully_placed()
+    context.page.verify_billing_user_details()
+
 @then('"Proceed to Payment" button should be disabled')
 def proceed_to_payment_button_should_be_disabled(context):
     context.page.assert_proceed_to_payment_button_disabled()

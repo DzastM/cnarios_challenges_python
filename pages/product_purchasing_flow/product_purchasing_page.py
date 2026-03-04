@@ -6,6 +6,8 @@ from .cart_page import CartPage
 
 class ProductPurchasingPage(BasePage):
 
+    HEADER = (By.TAG_NAME, "h1")
+    EXPECTED_HEADER_TEXT = "E-commerce End-to-End Product Purchasing Flow"
     URL = "https://www.cnarios.com/challenges/product-purchasing"
     VIEW_CART_BUTTON = (By.CSS_SELECTOR, "header button")
     CART_SELECTOR = (By.CSS_SELECTOR, ".space-y-4 > div")
@@ -24,19 +26,10 @@ class ProductPurchasingPage(BasePage):
         self.click_element(self.VIEW_CART_BUTTON)
         return CartPage(self.driver)
 
-    # def get_cart_items(self) -> dict:
-    #     cart_items_selector = self.driver.find_elements(*self.CART_SELECTOR)
-    #     full_cart_items_info = {}  # Dictionary of items in format {item_name: (quantity, price)}
-    #     for item in cart_items_selector:
-    #         full_cart_items_info[item.find_element(*self.PRODUCT_NAME).text.split('(')[0].strip()] = (item.find_element(*self.PRODUCT_QUANTITY).text, item.find_element(*self.PRODUCT_PRICE).text)
-    #     return full_cart_items_info       
+    def assert_header_text(self):
+        actual_text = self.driver.find_element(*self.HEADER).text
+        assert actual_text == self.EXPECTED_HEADER_TEXT, f"Expected header text to be '{self.EXPECTED_HEADER_TEXT}', but got '{actual_text}'"
     
-    # def get_item_name_and_quantity(self) -> dict:
-    #     item_names_and_quantities = {}
-    #     full_cart_items_info = self.get_cart_items()
-    #     for item_name in full_cart_items_info:
-    #         item_names_and_quantities[item_name] = int(full_cart_items_info[item_name][0])  # Extracting quantity from the tuple
-    #     return item_names_and_quantities
-
-    # def get_total_price(self) -> str:
-    #     return self.driver.find_element(*self.TOTAL_PRICE).text.split(':')[1].strip()
+    def assert_if_cart_is_empty(self):
+        cart_items_selector = self.driver.find_elements(*self.CART_SELECTOR)
+        assert len(cart_items_selector) == 0, f"Expected cart to be empty, but found items: {[item.find_element(*self.PRODUCT_NAME).text for item in cart_items_selector]}"

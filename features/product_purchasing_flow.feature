@@ -37,7 +37,6 @@ Feature: End-to-end Product Purchasing Flow
         And I decrease the quantity of "Laptop Backpack" to 0
         Then the cart should be empty
 
-#to be implemented
     Scenario: Billing form validation
         Given I am on the product purchasing page
         When I add products to the cart

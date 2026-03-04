@@ -17,3 +17,11 @@ class BasePage:
     
     def scroll_to_top(self):
         self.driver.execute_script("window.scrollTo(0, 0);")
+
+    def store_data(self, key, value):
+        if not hasattr(self, 'data_store'):
+            self.data_store = {}
+        self.data_store[key] = value
+
+    def get_data(self, key):
+        return self.data_store.get(key, None)
